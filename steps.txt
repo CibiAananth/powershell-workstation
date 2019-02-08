@@ -1,0 +1,11 @@
+steps
+1. Enable-PSRemoting
+2. Enable-PSRemoting -SkipNetworkProfileCheck -Force
+3. set-executionpolicy remotesigned
+
+
+$computerList = Get-Content $file_path
+
+Write-Output($computerList)
+
+Invoke-Command -ComputerName $computerList {Get-ChildItem c:/}
