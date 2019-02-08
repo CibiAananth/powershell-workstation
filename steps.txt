@@ -4,8 +4,12 @@ steps
 3. set-executionpolicy remotesigned
 
 
+// Similar Commands
+
 $computerList = Get-Content $file_path
-
 Write-Output($computerList)
-
 Invoke-Command -ComputerName $computerList {Get-ChildItem c:/}
+
+Get-WmiObject -Query "Select StartMode From Win32_Service Where Name='LanmanWorkStation'" | select -property StartMode
+Get-WmiObject -Query "Select * From Win32_Service Where Name='LanmanWorkStation'" | select -property State
+Get-Service LanmanWorkstation | select -property name,status
